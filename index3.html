@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajaxを利用してローカルの外部ファイルを読み込む</title>
+    <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"
+          rel="stylesheet" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
+            type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+            type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#ajax-button').click(
+                function () {
+                    $.ajax({
+                        //URL指定
+                        url: 'sample.json',
+                        //データ形式指定
+                        dataType: 'json',
+                        //通信に成功した場合の処理
+                        success: function (data) {
+                            var message = jsonParser(data);
+                            $('#sample-text').html(message);
+                            $('#sample-text').html(obj.code);
+                            $('#sample-result').html('<hr/><font color="blue">読み込み成功</font><hr/>');
+                        },
+                        //通信に失敗した場合の処理
+                        error: function (data) {
+                            $('#sample-result').html('<font color="red">読み込みNG</font>');
+                        }
+                    });
+                }
+            );
+            $('#clear').click(
+                function () {
+                    $('#sample-text').html('');
+                    $('#sample-result').html('');
+                });
+        });
+
+        function jsonParser(data) {
+            var message = data.code;
+            message = message + '<br/>';
+            message = message + data.message;
+            return message;
+        }
+    </script>
+</head>
+<body>
+
+<h3>Ajaxを利用してjson形式のファイルを読み込みパースする</h3>
+<p>
+    <input type="button" id="ajax-button" value="読み込む"/>
+    <input type="button" id="clear" value="clear" onclick="OnButtonClick"/>
+    <br/>
+</p>
+<div id="sample-result"></div>
+<div id="sample-text"></div>
+
+
+</body>
+</html>
