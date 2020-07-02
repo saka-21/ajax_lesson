@@ -3,25 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>CSS_overflow</title>
-    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script>
-        $(function () {
-            $('#button').click(
-                function () {
-                    $.ajax({
-                        url: 'sample2.html',
-                        dataType: 'html',
-                        success: function (data) {
-                            $('#text').html(data);
-                        },
-                        error: function (data) {
-                            alert('error');
-                        }
-                    });
-                }
-            );
-        });
-    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="sample.js"></script>
 </head>
 <body>
     <input type="button" id="button" value="button"/>
